@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Condition Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0F7FA; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #00796b;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="file"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .image-preview {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Land Condition Verification</h2>
+
+    <!-- Land Image Upload -->
+    <label for="land-image-upload">Upload an Image of the Land:</label>
+    <input type="file" id="land-image-upload" accept="image/*" onchange="previewImage(event)">
+    <img id="land-image-preview" class="image-preview" src="" alt="Land Image Preview">
+
+    <!-- Location Input -->
+    <label for="land-location">Enter the Location of the Land:</label>
+    <input type="text" id="land-location" placeholder="e.g., Village XYZ, State ABC">
+
+    <!-- Questions Section -->
+    <label for="water-availability">Is water available at the locality?</label>
+    <select id="water-availability">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+
+    <label for="ph-level">pH level of the land:</label>
+    <input type="text" id="ph-level" placeholder="Enter pH level (e.g., 6.5)">
+
+    <label for="previous-pests">Previous pests observed on the land:</label>
+    <textarea id="previous-pests" placeholder="e.g., Aphids, Whiteflies, etc."></textarea>
+
+    <label for="climate-conditions">Climate conditions at the locality:</label>
+    <select id="climate-conditions">
+        <option value="tropical">Tropical</option>
+        <option value="temperate">Temperate</option>
+        <option value="arid">Arid</option>
+        <option value="cold">Cold</option>
+    </select>
+
+    <!-- Submit Button -->
+    <button onclick="submitForm()">Submit Information</button>
+</div>
+
+<script>
+    // Function to preview the uploaded land image
+    function previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('land-image-preview');
+                imagePreview.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Function to handle form submission (example)
+    function submitForm() {
+        const location = document.getElementById('land-location').value;
+        const waterAvailability = document.getElementById('water-availability').value;
+        const phLevel = document.getElementById('ph-level').value;
+        const previousPests = document.getElementById('previous-pests').value;
+        const climateConditions = document.getElementById('climate-conditions').value;
+
+        // Validate that all fields are filled
+        if (!location || !phLevel || !previousPests) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Display the entered information (or send it to a backend server for processing)
+        alert(`
+            Location: ${location}
+            Water Availability: ${waterAvailability}
+            pH Level: ${phLevel}
+            Previous Pests: ${previousPests}
+            Climate Conditions: ${climateConditions}
+        `);
+
+        // You can further add logic to send this data to a server for analysis
+    }
+</script>
+
+</body>
+</html>

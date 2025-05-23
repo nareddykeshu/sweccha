@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Suggestion Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0F7FA; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #00796b;
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .suggestions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Crop Suggestion Tool</h2>
+
+    <button onclick="suggestCrops()">Show Crop Suggestions</button>
+
+    <div id="crop-suggestions" class="suggestions" style="display: none;">
+        <h3>Suggested Crops:</h3>
+        <ul id="suggested-crops-list"></ul>
+    </div>
+</div>
+
+<script>
+    // Function to provide crop suggestions
+    function suggestCrops() {
+        // Static crop suggestions
+        const suggestions = [
+            "Tomatoes (best for organic farming)",
+            "Carrots (thrives in many conditions)",
+            "Spinach (requires minimal care)",
+            "Potatoes (high yield and easy to grow)",
+            "Cucumber (great for seasonal farming)",
+            "Capsicum (ideal for small farms)",
+            "Beans (a nitrogen fixer for the soil)",
+            "Corn (popular and widely adaptable)",
+            "Pumpkins (organic compost recommended)",
+            "Okra (grows well in warm climates)"
+        ];
+
+        // Display suggestions
+        const suggestionsDiv = document.getElementById('crop-suggestions');
+        const suggestedCropsList = document.getElementById('suggested-crops-list');
+        suggestedCropsList.innerHTML = ""; // Clear previous suggestions
+
+        suggestions.forEach(crop => {
+            const listItem = document.createElement('li');
+            listItem.textContent = crop;
+            suggestedCropsList.appendChild(listItem);
+        });
+
+        suggestionsDiv.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
